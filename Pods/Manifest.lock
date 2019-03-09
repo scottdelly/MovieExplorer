@@ -1,0 +1,39 @@
+PODS:
+  - Alamofire (4.8.1)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
+  - Moya/ReactiveSwift (12.0.1):
+    - Moya/Core
+    - ReactiveSwift (~> 4.0)
+  - Nuke (7.5.2)
+  - ReactiveSwift (4.0.0):
+    - Result (~> 4.0)
+  - Result (4.1.0)
+  - Toucan (1.1.0)
+
+DEPENDENCIES:
+  - Moya/ReactiveSwift (~> 12.0)
+  - Nuke (~> 7.0)
+  - Toucan (~> 1.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Moya
+    - Nuke
+    - ReactiveSwift
+    - Result
+    - Toucan
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  Nuke: 0350d346a688426e8f2331253ef28dc2fc4f6178
+  ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  Toucan: 8f228fabb21521b9658692df9325fe76e71d74b2
+
+PODFILE CHECKSUM: 7a42e7b8b878e80902cd8b759aa985d3b3c987c4
+
+COCOAPODS: 1.6.1
