@@ -56,14 +56,6 @@ class MovieDetailVC: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 210
-        } else {
-            return UITableView.automaticDimension
-        }
-    }
-
     func buildAttributedString() -> NSAttributedString {
         let overviewString = NSMutableAttributedString(string: "\(self.movie.overview!)\n")
         let releaseDateString = NSAttributedString(string: "Released: \(self.movie.release_date!)", attributes: [.font: UIFont.italicSystemFont(ofSize: 18)])

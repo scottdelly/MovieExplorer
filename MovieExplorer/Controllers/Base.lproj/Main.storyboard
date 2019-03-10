@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.86272207310838445" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="aGs-XV-PrW">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="aGs-XV-PrW">
                             <size key="itemSize" width="375" height="240"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -61,7 +61,7 @@
                                                 <constraint firstAttribute="width" constant="100" id="bZG-Zn-fAx"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4T-yU-tMo">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4T-yU-tMo">
                                             <rect key="frame" x="16" y="210" width="343" height="30"/>
                                             <color key="backgroundColor" white="0.85999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -131,26 +131,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.85999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieDetailImagesCell" rowHeight="210" id="JsR-9K-cx0" customClass="MovieDetailImagesCell" customModule="MovieExplorer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="210"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieDetailImagesCell" rowHeight="220" id="JsR-9K-cx0" customClass="MovieDetailImagesCell" customModule="MovieExplorer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JsR-9K-cx0" id="ad9-ur-KCr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mgg-ec-JL6">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mgg-ec-JL6">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                             <color key="backgroundColor" white="0.85999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="mgg-ec-JL6" secondAttribute="height" multiplier="25:14" id="f8q-q0-WT7"/>
+                                            </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eas-zb-T8c">
-                                            <rect key="frame" x="20" y="60" width="100" height="150"/>
+                                            <rect key="frame" x="20" y="70" width="100" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Eas-zb-T8c" secondAttribute="height" multiplier="2:3" id="cEK-sK-hVY"/>
                                                 <constraint firstAttribute="width" constant="100" id="xwS-un-k9u"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aW4-9c-HOA">
-                                            <rect key="frame" x="20" y="60" width="100" height="150"/>
+                                            <rect key="frame" x="20" y="70" width="100" height="150"/>
                                             <connections>
                                                 <action selector="buttonPosterTUIAction:" destination="JsR-9K-cx0" eventType="touchUpInside" id="C1o-G3-uRV"/>
                                             </connections>
@@ -158,7 +161,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.85999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="mgg-ec-JL6" secondAttribute="bottom" id="1HH-HZ-shB"/>
+                                        <constraint firstAttribute="bottom" secondItem="mgg-ec-JL6" secondAttribute="bottom" constant="10" id="1HH-HZ-shB"/>
                                         <constraint firstItem="Eas-zb-T8c" firstAttribute="leading" secondItem="ad9-ur-KCr" secondAttribute="leading" constant="20" id="4rk-HZ-Vkg"/>
                                         <constraint firstItem="Eas-zb-T8c" firstAttribute="width" secondItem="Eas-zb-T8c" secondAttribute="height" multiplier="2:3" id="5Oe-LC-7GH"/>
                                         <constraint firstItem="aW4-9c-HOA" firstAttribute="top" secondItem="Eas-zb-T8c" secondAttribute="top" id="6MP-fR-dDs"/>
@@ -178,7 +181,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieDetailOverviewCell" rowHeight="30" id="Qx9-Ly-Gma" customClass="MovieDetailOverviewCell" customModule="MovieExplorer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="238" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="248" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qx9-Ly-Gma" id="atA-1J-6I8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>

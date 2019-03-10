@@ -12,7 +12,7 @@ import Alamofire
 
 fileprivate let TMDBAPIKey = "1e1c266b3ca81dad5aea7386cd74c596"
 
-let TMDBRepository = MoyaProvider<TMDB>(plugins: [NetworkLoggerPlugin(verbose: true)])
+let TMDBRepository = MoyaProvider<TMDB>(plugins: [NetworkLoggerPlugin(verbose: false)])
 
 enum TMDB {
     case nowPlaying(page: Int)
