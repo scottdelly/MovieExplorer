@@ -8,10 +8,18 @@
 
 import UIKit
 
+protocol MovieDetailImagesCellDelegate: class {
+    func buttonPosterTUIAction(_ sender: UIButton)
+}
+
 class MovieDetailImagesCell: UITableViewCell {
 
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var backdropImage: UIImageView!
+
+    @IBOutlet weak var buttonPoster: UIButton!
+
+    weak var delegate: MovieDetailImagesCellDelegate?
 
 
     override func awakeFromNib() {
@@ -23,6 +31,9 @@ class MovieDetailImagesCell: UITableViewCell {
                 self.posterImage.layer.masksToBounds = true
                 self.posterImage.layer.cornerRadius = 4
         super.awakeFromNib()
+    }
+    @IBAction func buttonPosterTUIAction(_ sender: UIButton) {
+        self.delegate?.buttonPosterTUIAction(sender)
     }
 
 }

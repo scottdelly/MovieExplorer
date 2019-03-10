@@ -149,20 +149,31 @@
                                                 <constraint firstAttribute="width" constant="100" id="xwS-un-k9u"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aW4-9c-HOA">
+                                            <rect key="frame" x="20" y="60" width="100" height="150"/>
+                                            <connections>
+                                                <action selector="buttonPosterTUIAction:" destination="JsR-9K-cx0" eventType="touchUpInside" id="C1o-G3-uRV"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.85999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="mgg-ec-JL6" secondAttribute="bottom" id="1HH-HZ-shB"/>
                                         <constraint firstItem="Eas-zb-T8c" firstAttribute="leading" secondItem="ad9-ur-KCr" secondAttribute="leading" constant="20" id="4rk-HZ-Vkg"/>
                                         <constraint firstItem="Eas-zb-T8c" firstAttribute="width" secondItem="Eas-zb-T8c" secondAttribute="height" multiplier="2:3" id="5Oe-LC-7GH"/>
+                                        <constraint firstItem="aW4-9c-HOA" firstAttribute="top" secondItem="Eas-zb-T8c" secondAttribute="top" id="6MP-fR-dDs"/>
                                         <constraint firstItem="mgg-ec-JL6" firstAttribute="leading" secondItem="ad9-ur-KCr" secondAttribute="leading" id="9Nj-Cz-Omx"/>
+                                        <constraint firstItem="aW4-9c-HOA" firstAttribute="trailing" secondItem="Eas-zb-T8c" secondAttribute="trailing" id="FH3-d9-aQf"/>
+                                        <constraint firstItem="aW4-9c-HOA" firstAttribute="bottom" secondItem="Eas-zb-T8c" secondAttribute="bottom" id="Fwa-jk-21U"/>
                                         <constraint firstItem="mgg-ec-JL6" firstAttribute="top" secondItem="ad9-ur-KCr" secondAttribute="top" id="NK4-e9-Hcp"/>
                                         <constraint firstAttribute="trailing" secondItem="mgg-ec-JL6" secondAttribute="trailing" id="Pi4-8s-qNV"/>
                                         <constraint firstAttribute="bottom" secondItem="Eas-zb-T8c" secondAttribute="bottom" id="m6u-m0-0se"/>
+                                        <constraint firstItem="aW4-9c-HOA" firstAttribute="leading" secondItem="Eas-zb-T8c" secondAttribute="leading" id="shk-xE-qTv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="backdropImage" destination="mgg-ec-JL6" id="1oR-xw-1Q2"/>
+                                    <outlet property="buttonPoster" destination="aW4-9c-HOA" id="NGl-NH-nEh"/>
                                     <outlet property="posterImage" destination="Eas-zb-T8c" id="IIN-EM-juq"/>
                                 </connections>
                             </tableViewCell>
@@ -185,17 +196,20 @@
                         <barButtonItem key="backBarButtonItem" title="Close" id="1sH-rb-WV3">
                             <color key="tintColor" red="0.087806954980000004" green="0.35401436689999999" blue="0.99835354089999995" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="CGH-54-pPM">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="CGH-54-pPM">
                             <connections>
-                                <segue destination="ABH-kj-LEj" kind="unwind" unwindAction="prepareForUnwindWithSegue:" id="5bf-MY-W4x"/>
+                                <segue destination="ABH-kj-LEj" kind="unwind" identifier="unwindShowMovieDetail" unwindAction="prepareForUnwindWithSegue:" id="5bf-MY-W4x"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="leftNavButton" destination="CGH-54-pPM" id="xAz-0P-OA1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9C-GB-C2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ABH-kj-LEj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1943" y="152"/>
+            <point key="canvasLocation" x="1941.5999999999999" y="151.57421289355324"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

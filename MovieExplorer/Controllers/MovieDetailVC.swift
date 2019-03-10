@@ -12,11 +12,15 @@ import Nuke
 class MovieDetailVC: UITableViewController {
 
     var movie: TMDBMovie!
+    @IBOutlet weak var leftNavButton: UIBarButtonItem!
+
+    var posterImage: UIImage?
+    weak var posterImageZoomView: ImageZoomView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = []
         self.title = self.movie.title
-        // Do any additional setup after loading the view.
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,11 +38,14 @@ class MovieDetailVC: UITableViewController {
 
             var posterRequest = ImageRequest(url: movie.posterURL(width: .mini))
             posterRequest.priority = .high
-            Nuke.loadImage(with: posterRequest, into: imagesCell.posterImage)
+            Nuke.loadImage(with: posterRequest, into: imagesCell.posterImage, completion: { [weak self] (response, error) in
+                self?.posterImage = response?.image
+            })
 
             var backgropRequest = ImageRequest(url: movie.backgropURL(width: .large))
             backgropRequest.priority = .high
             Nuke.loadImage(with: backgropRequest, into: imagesCell.backdropImage)
+            imagesCell.delegate = self
             return imagesCell
         } else {
             let overviewCell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailOverviewCell", for: indexPath) as! MovieDetailOverviewCell
@@ -54,11 +61,6 @@ class MovieDetailVC: UITableViewController {
             return 210
         } else {
             return UITableView.automaticDimension
-//            let overviewString = self.buildAttributedString()
-//            print(self.view.bounds.size)
-//            let rect = overviewString.boundingRect(with: self.view.bounds.size, options: [], context: nil)
-//            print(rect.size)
-//            return rect.size.height
         }
     }
 
@@ -68,5 +70,45 @@ class MovieDetailVC: UITableViewController {
         overviewString.append(releaseDateString)
         return overviewString
     }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if let _ = self.posterImageZoomView {
+            self.hideZoomImageView()
+            return false
+        } else {
+            return true
+        }
+    }
 
+    func showZoomImageView(from view: UIView){
+        let zoomImageView = ImageZoomView(frame: self.view.bounds)
+        self.view.addSubview(zoomImageView)
+        self.posterImageZoomView = zoomImageView
+        zoomImageView.show(at: zoomImageView.convert(view.frame, from: view.superview), in: { imageView in
+            imageView.contentMode = .scaleAspectFit
+            Nuke.loadImage(with: self.movie.posterURL(width: .full), options: ImageLoadingOptions(placeholder: self.posterImage), into: imageView)
+        })
+        self.tableView.isScrollEnabled = false
+
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(tapGRAction(_:)))
+        zoomImageView.addGestureRecognizer(tapGR)
+    }
+
+    @objc func tapGRAction(_ sender: UITapGestureRecognizer) {
+        self.hideZoomImageView()
+        sender.isEnabled = false
+    }
+
+    func hideZoomImageView() {
+        self.posterImageZoomView?.unShow { Bool in
+            self.posterImageZoomView?.removeFromSuperview()
+        }
+        self.leftNavButton.title = "Done"
+        self.tableView.isScrollEnabled = true
+    }
+}
+
+extension MovieDetailVC: MovieDetailImagesCellDelegate {
+    func buttonPosterTUIAction(_ sender: UIButton) {
+        self.showZoomImageView(from: sender)
+    }
 }
