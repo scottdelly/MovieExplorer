@@ -10,19 +10,30 @@ import UIKit
 import ReactiveSwift
 import Moya
 
-class MoviewListVM {
+typealias MovieRequest = (TMDB, DispatchQueue?) -> SignalProducer<Response, MoyaError>
+
+class MoviewListVM: MovieListVMProtocol {
 
     fileprivate var movieData = MutableProperty<[TMDBMovie]>([])
+
+    var request: MovieRequest = TMDBRepository.reactive.request
 
     var lastPage = 0
     var count: Int {
         return self.movieData.value.count
     }
 
+    func fetch() -> SignalProducer<[TMDBMovie], MoyaError> {
+        return self.fetch(page: 1)
+    }
+
+    func fetchNext() -> SignalProducer<[TMDBMovie], MoyaError> {
+        return self.fetch(page: self.lastPage + 1)
+    }
+
     func fetch(page: Int) -> SignalProducer<[TMDBMovie], MoyaError> {
         self.lastPage = page
-        return TMDBRepository.reactive.request(.nowPlaying(page: page))
-            .map([DecodeReslt<TMDBMovie>].self, atKeyPath: "results")
+        return self.request(.nowPlaying(page: page), nil).map([DecodeReslt<TMDBMovie>].self, atKeyPath: "results")
             .filterMap({ (results) -> [TMDBMovie] in
                 return results.compactMap({ (decodeResults) -> TMDBMovie? in
                     return decodeResults.value

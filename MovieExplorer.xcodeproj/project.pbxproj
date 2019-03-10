@@ -15,6 +15,7 @@
 		D221156B22334442002E7CDC /* MovieDetailImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221156A22334442002E7CDC /* MovieDetailImagesCell.swift */; };
 		D221156D22334481002E7CDC /* MovieDetailOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221156C22334481002E7CDC /* MovieDetailOverviewCell.swift */; };
 		D2730DB92234A4E600050A7D /* MovieListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2730DB82234A4E600050A7D /* MovieListVM.swift */; };
+		D2730DBB22358A7300050A7D /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2730DBA22358A7200050A7D /* ImageRepository.swift */; };
 		D287EE7322349258009A358E /* ImageZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D287EE7222349258009A358E /* ImageZoomView.swift */; };
 		D2C0E16722330F2A00A3160C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C0E16622330F2A00A3160C /* AppDelegate.swift */; };
 		D2C0E16C22330F2A00A3160C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C0E16A22330F2A00A3160C /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		D221156A22334442002E7CDC /* MovieDetailImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailImagesCell.swift; sourceTree = "<group>"; };
 		D221156C22334481002E7CDC /* MovieDetailOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailOverviewCell.swift; sourceTree = "<group>"; };
 		D2730DB82234A4E600050A7D /* MovieListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListVM.swift; sourceTree = "<group>"; };
+		D2730DBA22358A7200050A7D /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		D287EE7222349258009A358E /* ImageZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomView.swift; sourceTree = "<group>"; };
 		D2C0E16322330F2A00A3160C /* MovieExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C0E16622330F2A00A3160C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				D22115612233137F002E7CDC /* TMDBRepository.swift */,
 				D221156322331B16002E7CDC /* TMDBMovie.swift */,
+				D2730DBA22358A7200050A7D /* ImageRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				D2C0E16722330F2A00A3160C /* AppDelegate.swift in Sources */,
 				D221156422331B16002E7CDC /* TMDBMovie.swift in Sources */,
 				D287EE7322349258009A358E /* ImageZoomView.swift in Sources */,
+				D2730DBB22358A7300050A7D /* ImageRepository.swift in Sources */,
 				D2C0E1972233117200A3160C /* MovieListVC.swift in Sources */,
 				D221156922334165002E7CDC /* MovieDetailVC.swift in Sources */,
 				D22115622233137F002E7CDC /* TMDBRepository.swift in Sources */,
@@ -550,6 +554,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6F4JCJJ4W;
 				INFOPLIST_FILE = MovieExplorer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -569,6 +574,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6F4JCJJ4W;
 				INFOPLIST_FILE = MovieExplorer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

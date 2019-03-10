@@ -11,11 +11,12 @@ import Nuke
 
 class MovieDetailVC: UITableViewController {
 
+    var imageLoader: ImageRepositoryProtocol = ImageRepository()
     var movie: TMDBMovie!
-    @IBOutlet weak var leftNavButton: UIBarButtonItem!
 
     var posterImage: UIImage?
     weak var posterImageZoomView: ImageZoomView?
+    @IBOutlet weak var leftNavButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +37,14 @@ class MovieDetailVC: UITableViewController {
             //images cell
             let imagesCell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailImagesCell", for: indexPath) as! MovieDetailImagesCell
 
-            var posterRequest = ImageRequest(url: movie.posterURL(width: .mini))
-            posterRequest.priority = .high
-            Nuke.loadImage(with: posterRequest, into: imagesCell.posterImage, completion: { [weak self] (response, error) in
+            self.imageLoader.loadImage(with: self.movie.posterURL(width: .mini),
+                                       options: ImageLoadingOptions.shared,
+                                       into: imagesCell.posterImage,
+                                       completion: { [weak self] (response, error) in
                 self?.posterImage = response?.image
             })
 
-            var backgropRequest = ImageRequest(url: movie.backgropURL(width: .large))
-            backgropRequest.priority = .high
-            Nuke.loadImage(with: backgropRequest, into: imagesCell.backdropImage)
+            self.imageLoader.loadImage(with: self.movie.backgropURL(width: .large), into: imagesCell.backdropImage)
             imagesCell.delegate = self
             return imagesCell
         } else {
@@ -62,6 +62,7 @@ class MovieDetailVC: UITableViewController {
         overviewString.append(releaseDateString)
         return overviewString
     }
+
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if let _ = self.posterImageZoomView {
             self.hideZoomImageView()
@@ -77,7 +78,10 @@ class MovieDetailVC: UITableViewController {
         self.posterImageZoomView = zoomImageView
         zoomImageView.show(at: zoomImageView.convert(view.frame, from: view.superview), in: { imageView in
             imageView.contentMode = .scaleAspectFit
-            Nuke.loadImage(with: self.movie.posterURL(width: .full), options: ImageLoadingOptions(placeholder: self.posterImage), into: imageView)
+            self.imageLoader.loadImage(with: self.movie.posterURL(width: .full),
+                                       options: ImageLoadingOptions(placeholder: self.posterImage),
+                                       into: imageView,
+                                       completion: nil)
         })
         self.tableView.isScrollEnabled = false
 

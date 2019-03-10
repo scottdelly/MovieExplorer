@@ -9,12 +9,20 @@
 import UIKit
 import ReactiveSwift
 import Alamofire
-import Nuke
-import Toucan
+import Moya
+
+protocol MovieListVMProtocol {
+    var count: Int { get }
+    subscript(i: Int) -> TMDBMovie { get }
+
+    func fetch() -> SignalProducer<[TMDBMovie], MoyaError>
+    func fetchNext() -> SignalProducer<[TMDBMovie], MoyaError>
+}
 
 class MovieListVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    let movieList = MoviewListVM()
+    var movieList: MovieListVMProtocol = MoviewListVM()
+    var imageLoader: ImageRepositoryProtocol = ImageRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +40,14 @@ class MovieListVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
     }
 
     func load(then block: (()-> ())? = nil){
-        self.movieList.fetch(page: 1).startWithCompleted {
+        self.movieList.fetch().startWithCompleted {
             self.collectionView.reloadData()
             block?()
         }
     }
 
     func loadMore() {
-        self.movieList.fetch(page: self.movieList.lastPage + 1).start { (event) in
+        self.movieList.fetchNext().start { (event) in
             switch event {
             case .value(let movies):
                 self.collectionView.performBatchUpdates({
@@ -77,8 +85,8 @@ class MovieListVC: UICollectionViewController, UICollectionViewDelegateFlowLayou
         let movieCell =  collectionView.dequeueReusableCell(withReuseIdentifier: "MovieListCell", for: indexPath) as! MovieListCell
         let movie = self.movieList[indexPath.item]
         movieCell.titleLabel.text = movie.title
-        Nuke.loadImage(with: movie.posterURL(width: .mini), into: movieCell.posterImage)
-        Nuke.loadImage(with: movie.backgropURL(width: .large), into: movieCell.backdropImage)
+        self.imageLoader.loadImage(with: movie.posterURL(width: .mini), into: movieCell.posterImage)
+        self.imageLoader.loadImage(with: movie.backgropURL(width: .large), into: movieCell.backdropImage)
         return movieCell
     }
 
