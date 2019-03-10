@@ -50,6 +50,47 @@ extension TMDB: TargetType {
     }
 }
 
+enum DecodeReslt<T: Decodable>: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        do {
+            self = .value(try container.decode(T.self))
+            return
+        } catch let error {
+            self = .error(error)
+        }
+    }
+    case value(T)
+    case error(Error)
+
+    var isValue: Bool {
+        switch self {
+        case .value:
+            return true
+        default:
+            return false
+        }
+    }
+
+    var value: T? {
+        switch self {
+        case .value(let value):
+            return value
+        default:
+            return nil
+        }
+    }
+
+    var error: Error? {
+        switch self {
+        case .error(let error):
+            return error
+        default:
+            return nil
+        }
+    }
+}
+
 let TMDBSampleJson = """
 {
   "results": [

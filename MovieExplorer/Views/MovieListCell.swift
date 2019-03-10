@@ -20,8 +20,6 @@ class MovieListCell: UICollectionViewCell {
 
         self.backdropImage.layer.shouldRasterize = true
         self.backdropImage.layer.rasterizationScale = UIScreen.main.scale
-//        self.posterImage.layer.masksToBounds = true
-//        self.posterImage.layer.cornerRadius = 4
         super.awakeFromNib()
     }
 }

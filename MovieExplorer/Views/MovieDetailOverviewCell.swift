@@ -10,6 +10,4 @@ import UIKit
 
 class MovieDetailOverviewCell: UITableViewCell {
     @IBOutlet weak var overviewLabel: UILabel!
-
-    
 }

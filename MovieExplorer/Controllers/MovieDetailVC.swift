@@ -57,8 +57,8 @@ class MovieDetailVC: UITableViewController {
     }
 
     func buildAttributedString() -> NSAttributedString {
-        let overviewString = NSMutableAttributedString(string: "\(self.movie.overview!)\n")
-        let releaseDateString = NSAttributedString(string: "Released: \(self.movie.release_date!)", attributes: [.font: UIFont.italicSystemFont(ofSize: 18)])
+        let overviewString = NSMutableAttributedString(string: "\(self.movie.overview)\n")
+        let releaseDateString = NSAttributedString(string: "Released: \(self.movie.releaseDate)", attributes: [.font: UIFont.italicSystemFont(ofSize: 18)])
         overviewString.append(releaseDateString)
         return overviewString
     }

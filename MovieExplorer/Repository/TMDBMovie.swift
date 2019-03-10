@@ -11,20 +11,31 @@ import Foundation
 struct TMDBMovie {
     static let imageBaseURL = "https://image.tmdb.org/t/p/w"
 
-    let poster_path: String?
-    let adult: Bool?
-    let overview: String?
-    let release_date: String?
-    let genre_ids: [Int]?
     let id: Int
-    let original_title: String?
-    let original_language: String?
-    let title: String?
-    let backdrop_path: String?
-    let popularity: Float?
-    let vote_count: Int?
-    let video: Bool?
-    let vote_average: Float?
+    let posterPath: String
+    let overview: String
+    let releaseDate: String
+    let title: String
+    let backdropPath: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case posterPath = "poster_path"
+        case overview
+        case releaseDate = "release_date"
+        case title
+        case backdropPath = "backdrop_path"
+    }
+
+//    Unused
+//    let adult: Bool?
+//    let genre_ids: [Int]?
+//    let original_title: String?
+//    let original_language: String?
+//    let popularity: Float?
+//    let vote_count: Int?
+//    let video: Bool?
+//    let vote_average: Float?
 
     enum PosterSize: Int {
         case mini = 200
@@ -34,10 +45,10 @@ struct TMDBMovie {
     }
 
     func posterURL(width: PosterSize) -> URL {
-        return URL(string: "\(TMDBMovie.imageBaseURL)\(width.rawValue)")!.appendingPathComponent(self.poster_path!)
+        return URL(string: "\(TMDBMovie.imageBaseURL)\(width.rawValue)")!.appendingPathComponent(self.posterPath)
     }
     func backgropURL(width: PosterSize) -> URL {
-        return URL(string: "\(TMDBMovie.imageBaseURL)\(width.rawValue)")!.appendingPathComponent(self.backdrop_path!)
+        return URL(string: "\(TMDBMovie.imageBaseURL)\(width.rawValue)")!.appendingPathComponent(self.backdropPath)
     }
 }
 
